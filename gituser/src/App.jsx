@@ -8,7 +8,6 @@ function GitUser() {
   const Submit =()=>{
     axios.get(  `https://api.github.com/users/${username}`)
       .then((res) => {
-        console.log(res.data)
         setUserData(res.data);
       })
   }
@@ -32,7 +31,7 @@ function GitUser() {
         >Search</button>
       </div>
       <div className="flex mt-2 justify-center ">
-        <div className="border w-[450px]  bg-stone-700 p-3 h-min">
+        <div className="border w-[450px]  bg-stone-700 p-3 h-min rounded-md">
           <div className="flex justify-around items-center mb-2">
             <img className="bg-blue-400 rounded-[100%] w-[200px] h-[200px] overflow-hidden" src={userData.avatar_url} />
             <div className="flex flex-col items-center">
@@ -43,26 +42,26 @@ function GitUser() {
           </div>
           <div className="flex justify-around">
             <div className="border w-24 text-center p-1">
-              <h2>Followers</h2>
+              <h2 className="text-white">Followers</h2>
               <h3 className="border-t text-white">{userData.followers}</h3>
             </div>
-            <div className="border w-34 text-center p-1">
-              <h2>Follwing</h2>
+            <div className="border w-24 text-center p-1">
+              <h2 className="text-white">Follwing</h2>
               <h3 className="border-t text-white">{userData.following}</h3>
             </div>
           </div>
           <div className="flex justify-around">
-            <div className="border w-34 text-center p-1">
-              <h2>Public Repositories</h2>
+            <div className="border w-24 text-center p-1">
+              <h2 className="text-white">Public Repositories</h2>
               <h3 className="border-t text-white">{userData.public_repos}</h3>
             </div>
-            <div className="border w-34 text-center p-1">
-              <h2>Location</h2>
+            <div className="border w-24 text-center p-1">
+              <h2 className="text-white">Location</h2>
               <h3 className="border-t text-white">{userData.location==null? "N/A":userData.location}</h3>
             </div>
           </div>
           {userData.bio==null?<></>:
-            <div className="text-center border h-min">
+            <div className="text-center border h-min text-white">
               <p>{userData.bio}</p>
             </div>
           }
