@@ -1,21 +1,23 @@
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import axios from "axios"
 function GitUser() {
 
   const [username, setUsername] = useState("")
   const [userData, setUserData] = useState({});
 
-  const Submit =()=>{
-    axios.get(  `https://api.github.com/users/${username}`)
+  const Submit = () => {
+    axios.get(`https://api.github.com/users/${username}`)
       .then((res) => {
+        console.log(res);
         setUserData(res.data);
+
       })
   }
 
   return (
     <>
 
-      <div className="flex justify-center border items-center gap-2">
+      <div className="flex justify-center border items-center gap-2 p-3">
         <input
           value={username}
           type="text"
@@ -23,10 +25,11 @@ function GitUser() {
           className="border p-2 rounded-lg shadow-2xl border-blue-600"
           onChange={(e) => {
 
-            setUsername(e.target.value)}}
+            setUsername(e.target.value)
+          }}
         />
         <button
-        onClick={Submit}
+          onClick={Submit}
           className="p-2 bg-green-600 text-white font-semibold rounded-md"
         >Search</button>
       </div>
@@ -36,7 +39,7 @@ function GitUser() {
             <img className="bg-blue-400 rounded-[100%] w-[200px] h-[200px] overflow-hidden" src={userData.avatar_url} />
             <div className="flex flex-col items-center">
               <h1 className="text-white">Name</h1>
-              <h1 className="text-white">{userData.name==null? userData.login:userData.name}</h1>
+              <h1 className="text-white">{userData.name == null ? userData.login : userData.name}</h1>
             </div>
 
           </div>
@@ -57,15 +60,15 @@ function GitUser() {
             </div>
             <div className="border w-24 text-center p-1">
               <h2 className="text-white">Location</h2>
-              <h3 className="border-t text-white">{userData.location==null? "N/A":userData.location}</h3>
+              <h3 className="border-t text-white">{userData.location == null ? "N/A" : userData.location}</h3>
             </div>
           </div>
-          {userData.bio==null?<></>:
-            <div className="text-center border h-min text-white">
+          {userData.bio == null ? <></> :
+            <div className="text-center border h-min text-white p-1">
               <p>{userData.bio}</p>
             </div>
           }
-          
+
 
         </div>
       </div>
